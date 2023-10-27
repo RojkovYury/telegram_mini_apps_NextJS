@@ -1,4 +1,13 @@
-export default function TelegramInput(props: any) { 
+interface TelegramInputProps {
+    id: string;
+    colorId: string;
+    title: string;
+    icon: any;  //!!!!!!!!!
+    placeholder?: string;
+    sx?: any;  //!!!!!!!!!
+  }
+
+export default function TelegramInput(props: TelegramInputProps) { 
     return(
       <div 
         style={{ 

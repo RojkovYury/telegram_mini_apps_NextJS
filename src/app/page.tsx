@@ -5,11 +5,9 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import TelegramInput from '@/components/telegram-input';
 
-import styles from './page.module.css'
-
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <Paper elevation={3} sx={{ borderRadius: '25px', backgroundColor: 'var(--tg-theme-bg-color)', display: 'flex', flexDirection: 'column', mx: 3, my: 8, px: 2, py: 2 }}>
         <TelegramInput
           id='card-number'
