@@ -1,5 +1,5 @@
 {
-  "name": "bot-mini-apps_next",
+  "name": "telegram-bot-with-nextjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,22 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@mui/icons-material": "^5.14.15",
-    "@mui/material": "^5.14.15",
-    "next": "14.0.0",
-    "node-telegram-bot-api": "^0.64.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "request": "^2.34"
+    "@headlessui/react": "^1.7.12",
+    "@prisma/client": "^4.11.0",
+    "@types/node": "18.14.2",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "axios": "^1.3.4",
+    "clsx": "^1.2.1",
+    "eslint": "8.35.0",
+    "eslint-config-next": "13.2.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "next": "13.2.1",
+    "rc-pagination": "^3.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "recharts": "^2.4.3",
+    "typescript": "4.9.5"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.0",
-    "typescript": "^5"
+    "@types/lodash": "^4.14.191",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "prisma": "^4.11.0",
+    "tailwindcss": "^3.2.7"
   }
 }

@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String              @id @unique @default(uuid())
+  tg_id           String              @unique
+  first_name      String?
+  username        String?
+  registered_name String?
+  lang            String              @default("")
+  phone_number    String?
+  stream          String?
+  school          String?
+  registered      RegisteredStudent?  @relation("userRegistered")
+  waiting         waitingListStudent? @relation("userwaitingToBeRegistered")
+  isInvitedBy     Refferal?           @relation("inviteduser")
+  invited         Refferal[]          @relation("userinvited")
+  credited        Int                 @default(0)
+}
+
+model Refferal {
+  id        String @id @default(uuid())
+  invitor   User   @relation("userinvited", fields: [invitorId], references: [tg_id], onDelete: Cascade)
+  invitorId String
+  invited   User   @relation("inviteduser", fields: [invitedId], references: [tg_id], onDelete: Cascade)
+  invitedId String @unique
+}
+
+model RegisteredStudent {
+  id             String   @id @default(uuid())
+  student        User     @relation("userRegistered", fields: [stusent_tg_Id], references: [tg_id], onDelete: Cascade)
+  stusent_tg_Id  String   @unique
+  registeredDate DateTime @updatedAt
+  classof        String
+}
+
+model waitingListStudent {
+  id            String @id @default(uuid())
+  student       User   @relation("userwaitingToBeRegistered", fields: [stusent_tg_Id], references: [tg_id], onDelete: Cascade)
+  stusent_tg_Id String @unique
+  bank_name     String
+}
+
+//  invited user    @relation("invitedlist ", fields: [invitedId], references: [tg_id])
+//  payed   Boolean @default(false)
+model feedback {
+  id           String  @id @default(uuid())
+  index        Int     @unique @default(autoincrement())
+  first_name   String?
+  message_type String?
+  content      String? @db.LongText
+}
+
+model tutorialClass {
+  id          String @id @default(uuid())
+  name        String
+  stream      String @default("na")
+  class_tg_id String
+}
