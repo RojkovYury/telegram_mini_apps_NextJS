@@ -30,6 +30,11 @@ const DashBoard = () => {
 
   return (
     <>
+      <div style={{ height: '200px', width: '200px', background: 'var(--tg-theme-button-color)' }}></div>
+      <div style={{ height: '200px', width: '200px', background: 'var(--tg-theme-secondary-bg-color)' }}></div>
+      <div style={{ height: '200px', width: '200px', background: 'var(--tg-theme-hint-color)' }}></div>
+      <div style={{ height: '200px', width: '200px', background: 'var(--tg-theme-text-color)' }}></div>
+
       <TopCard
         key={1}
         icon={icons[0]}
