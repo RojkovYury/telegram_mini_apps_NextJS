@@ -2,9 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* background-color: #1e1e1e; */
+
 body {
   color: #676767;
-  background-color: #1e1e1e;
+  background-color: var(--tg-theme-button-color);
 }
 
 .bg-card {
