@@ -26,7 +26,7 @@ export const GlobalContextProvider: React.FC<Props> = ({ children }) => {
     waitingCount: 0,
     studentCount: 0,
     studentAddedThisMonth: 0,
-  } as Data);
+  } as unknown as Data);
 
   useEffect(() => {
     (async () => {

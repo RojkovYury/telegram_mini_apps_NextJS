@@ -1,6 +1,4 @@
-import { Student } from "../types";
-
-export const studentsData: Student[] = [
+export const studentsData: any = [
   {
     first_name: "Kebede",
     id: "wkdkwudnkwdn",
