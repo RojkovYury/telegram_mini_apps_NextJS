@@ -2,10 +2,9 @@ import Script from 'next/script';
 
 if (typeof window !== 'undefined') {
   const tg = window.Telegram.WebApp;
-  tg.MainButton.text = 'Отправить данные111';
-  // ваш код, который зависит от объекта window
-} else {
-  // обработка варианта, когда код запускается вне браузера (например, Node.js)
+  tg.MainButton.isVisible = true;
+  tg.MainButton.text = 'Отправить данные';
+  tg.headerColor = 'secondary_bg_color';
 }
 
 
