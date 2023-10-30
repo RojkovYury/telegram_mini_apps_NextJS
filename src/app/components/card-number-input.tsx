@@ -1,15 +1,17 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import TelegramInput from '@/components/telegram-input';
 
 interface CardNumberInputProps {
     handleOpenSnackbar: any;
+    cardNumber: string;
+    setCardNumber: any;
+    lunaCheck: any;
   }
 
-export default function CardNumberInput(props: CardNumberInputProps) {
-  const [cardNumber, setCardNumber] = useState<string>('');
+export default function CardNumberInput({ lunaCheck, handleOpenSnackbar, cardNumber, setCardNumber }: CardNumberInputProps) {
 
   const handleCardNumberChange = (e: any) => {
     const value = e.target.value.replace(/\s/g, "");
@@ -18,21 +20,9 @@ export default function CardNumberInput(props: CardNumberInputProps) {
     }
   };
 
-  const lunaCheck = (cardNumber: any) => {
-    let cardArray = cardNumber.toString().split('').map(Number)
-    for (let i = cardArray.length - 2; i >= 0; i -= 2) {
-      let doubledDigit = cardArray[i] * 2;
-      if (doubledDigit > 9) {doubledDigit -= 9}
-      cardArray[i] = doubledDigit;
-    }
-    let sum = cardArray.reduce((acc: any, curr: any) => acc + curr, 0);
-    if (sum % 10 === 0) {return true}
-    else {return false}
-  }
-
   useEffect(() => {
     if (cardNumber.length === 19 && !lunaCheck(cardNumber.replace(/\s/g, ""))) {
-      props.handleOpenSnackbar('Введен неверный номер', 'card-number-div-border', false)
+      handleOpenSnackbar('Введен неверный номер', 'card-number-div-border', false)
     }
     else {
       const div = document.getElementById('card-number-div-border');
@@ -40,7 +30,6 @@ export default function CardNumberInput(props: CardNumberInputProps) {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardNumber])
-
 
   return(
     <TelegramInput

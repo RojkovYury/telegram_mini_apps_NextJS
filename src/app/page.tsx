@@ -1,9 +1,13 @@
 "use client"
 
-import { useEffect, useState } from 'react';
-import { Paper } from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
+import { Box, Paper } from '@mui/material';
 import TelegramSnackbar from '@/components/telegram-snackbar';
 import CardNumberInput from './components/card-number-input';
+import CarHolderInput from './components/card-holder-input';
+import ExpirationDateInput from './components/expiration-date-input';
+import CvvInput from './components/cvv-input';
+import lunaCheck from './components/luna-check';
 
 export default function Home() {
 
@@ -14,6 +18,11 @@ export default function Home() {
     tg.headerColor = 'secondary_bg_color';
     tg.ready();
   });
+
+  const [cardNumber, setCardNumber] = useState<string>('');
+  const [nameOnCard, setNameOnCard] = useState<string>('');
+  const [expiryDate, setExpiryDate] = useState<string>('');
+  const [cvv, setCvv] = useState<string>('');
 
   // Snackbar
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -30,6 +39,34 @@ export default function Home() {
       }, 1000);
     }
   };
+
+// MAIN BUTTON CHECK
+  useEffect(() => { 
+    if (cardNumber.length === 19 && lunaCheck(cardNumber.replace(/\s/g, "")) && nameOnCard && expiryDate.length === 5 && cvv.length === 3) { 
+      window.Telegram.WebApp.MainButton.show()
+      console.log('ACTIVATE tg.MainButton.show()'); 
+    }
+    else { window.Telegram.WebApp.MainButton.hide() }
+  }, [cardNumber, nameOnCard, expiryDate, cvv ])
+
+  // SEND DATA to bot
+  //// callback
+  const onSendData = useCallback(()=>{
+    const cardNumberNoSpaces = cardNumber.replace(/\s/g, "")
+    const data = { cardNumber: cardNumberNoSpaces, nameOnCard, expiryDate, cvv }
+    window.Telegram.WebApp.sendData(JSON.stringify(data))
+  }, [cardNumber, nameOnCard, expiryDate, cvv])
+  //// send
+  useEffect(() => {
+    window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
+    return () => {window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)}
+  }, [onSendData])
+
+  // close modal window CHECK
+  useEffect(() => { 
+    if (cardNumber || nameOnCard || expiryDate || cvv) { window.Telegram.WebApp.enableClosingConfirmation() }
+    else { window.Telegram.WebApp.disableClosingConfirmation() }
+  }, [cardNumber, nameOnCard, expiryDate, cvv ])
 
   return (
     <main>
@@ -50,8 +87,28 @@ export default function Home() {
           px: 2, 
           py: 2 
         }}
-      >
-        <CardNumberInput handleOpenSnackbar={handleOpenSnackbar}/>
+      >  
+        <CardNumberInput
+          handleOpenSnackbar={handleOpenSnackbar}
+          cardNumber={cardNumber}
+          setCardNumber={setCardNumber}
+          lunaCheck={lunaCheck}
+        />
+        <CarHolderInput
+          handleOpenSnackbar={handleOpenSnackbar}
+          nameOnCard={nameOnCard}
+          setNameOnCard={setNameOnCard}
+        />
+        <Box sx={{ display: 'flex' }}>
+          <ExpirationDateInput
+            expiryDate={expiryDate}
+            setExpiryDate={setExpiryDate}
+          />
+          <CvvInput
+            cvv={cvv}
+            setCvv={setCvv}
+          />
+        </Box>
       </Paper>
     </main>
   )

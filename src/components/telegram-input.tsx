@@ -8,6 +8,7 @@ interface TelegramInputProps {
   placeholder: string;
   value: string;
   onChange: (e: any) => void;
+  onBlur?: () => void;
   sx?: any;
 }
 
@@ -55,6 +56,7 @@ export default function TelegramInput(props: TelegramInputProps) {
           placeholder={props.placeholder}
           value={props.value}
           onChange={props.onChange}
+          onBlur={props.onBlur}
           style={{
             color: 'var(--tg-theme-text-color)',
             borderTopRightRadius: '25px',
