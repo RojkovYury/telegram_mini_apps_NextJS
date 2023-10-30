@@ -14,6 +14,7 @@ export default function Home() {
   useEffect(() => {
     const tg = window.Telegram.WebApp;
     tg.MainButton.isVisible = true;
+    tg.MainButton.hide();
     tg.MainButton.text = 'Отправить данные';
     tg.headerColor = 'secondary_bg_color';
     tg.ready();
@@ -42,11 +43,20 @@ export default function Home() {
 
 // MAIN BUTTON CHECK
   useEffect(() => { 
+
+    console.log(window.Telegram.WebApp.MainButton);
+    console.log(window.Telegram.WebApp.MainButton.isVisible);
+    console.log(window.Telegram.WebApp.MainButton.isProgressVisible);
+    console.log(window.Telegram.WebApp.MainButton.isActive);
+
     if (cardNumber.length === 19 && lunaCheck(cardNumber.replace(/\s/g, "")) && nameOnCard && expiryDate.length === 5 && cvv.length === 3) { 
       window.Telegram.WebApp.MainButton.show()
       console.log('ACTIVATE tg.MainButton.show()'); 
     }
-    else { window.Telegram.WebApp.MainButton.hide() }
+    else { 
+      window.Telegram.WebApp.MainButton.hide()
+      // console.log('DEactive tg.MainButton.show()');
+    }
   }, [cardNumber, nameOnCard, expiryDate, cvv ])
 
   // SEND DATA to bot
