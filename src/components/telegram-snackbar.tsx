@@ -1,27 +1,37 @@
-/*
 import { forwardRef } from 'react';
 import { Snackbar } from '@mui/material';
-import MuiAlert from '@mui/material/Alert';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
+interface TelegramSnackbarProps {
+  open: boolean;
+  onClose: () => void;
+  message: string;
+}
 
+export default function TelegramSnackbar(props: TelegramSnackbarProps) {
+  const { open, onClose, message } = props;
 
-export default function TelegramSnackbar(props) {
-
-  const Alert = forwardRef(function Alert(props, ref) {
+  const Alert = forwardRef(function Alert(
+    props: AlertProps,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
   });
 
   return (
     <Snackbar
-      open={props.open}
+      open={open}
       autoHideDuration={1500}
-      onClose={props.onClose}
+      onClose={onClose}
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     >
-      <Alert onClose={props.onClose} severity="error" sx={{ width: '100%' }}>
-        {props.message}
+      <Alert
+        onClose={onClose}
+        severity="error"
+        sx={{ width: '100%' }}
+      >
+        {message}
       </Alert>
     </Snackbar>
-  )
+  );
 }
-*/

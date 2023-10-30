@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
+import TelegramSnackbar from '@/components/telegram-snackbar';
 import CardNumberInput from './components/card-number-input';
 
 export default function Home() {
@@ -32,6 +33,11 @@ export default function Home() {
 
   return (
     <main>
+      <TelegramSnackbar 
+        open={openSnackbar}
+        onClose={handleCloseSnackbar}
+        message={messageSnackbar}
+      />
       <Paper
         elevation={3} 
         sx={{ 
