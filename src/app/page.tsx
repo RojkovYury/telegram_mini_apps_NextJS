@@ -1,3 +1,5 @@
+import Script from 'next/script';
+
 if (typeof window !== 'undefined') {
   const tg = window.Telegram.WebApp;
   tg.MainButton.text = 'Отправить данные111';
@@ -9,10 +11,17 @@ if (typeof window !== 'undefined') {
 
 export default function Home() {
   return (
-    <main>
-      <div style={{ color: 'var(--tg-theme-button-color)' }}>
-        test
-      </div>
-    </main>
+    <>
+      {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
+      <Script
+        src="https://telegram.org/js/telegram-web-app.js"
+        strategy="beforeInteractive"
+      />
+      <main>
+        <div style={{ color: 'var(--tg-theme-button-color)', background: 'var(--tg-theme-text-color)' }}>
+          test
+        </div>
+      </main>
+    </>
   )
 }
