@@ -10,7 +10,9 @@ if (typeof window !== 'undefined') {
 export default function Home() {
   return (
     <main>
-      test
+      <div style={{ color: 'var(--tg-theme-button-color)' }}>
+        test
+      </div>
     </main>
   )
 }
