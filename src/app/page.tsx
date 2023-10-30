@@ -8,7 +8,7 @@ export default function Home() {
     const tg = window.Telegram.WebApp;
     tg.MainButton.isVisible = true;
     tg.MainButton.text = 'Отправить данные';
-
+    tg.headerColor = 'secondary_bg_color';
   });
 
   return (
