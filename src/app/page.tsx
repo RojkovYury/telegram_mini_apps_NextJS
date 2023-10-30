@@ -1,6 +1,8 @@
 "use client"
-import { useEffect } from 'react';
-import { Box } from '@mui/material';
+
+import { useEffect, useState } from 'react';
+import { Paper } from '@mui/material';
+import CardNumberInput from './components/card-number-input';
 
 export default function Home() {
 
@@ -9,24 +11,42 @@ export default function Home() {
     tg.MainButton.isVisible = true;
     tg.MainButton.text = 'Отправить данные';
     tg.headerColor = 'secondary_bg_color';
+    tg.ready();
   });
 
+  // Snackbar
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [messageSnackbar, setMessageSnackbar] = useState('');
+  const handleCloseSnackbar = () => { setOpenSnackbar(false); };
+  const handleOpenSnackbar = (message: string, divId: string, disableInfAnim: boolean) => {
+    setMessageSnackbar(message);
+    setOpenSnackbar(true);
+    const div = document.getElementById(divId);
+    div?.classList.add("pulsating-border")
+    if (disableInfAnim) {
+      setTimeout(function() {
+        div?.classList.remove("pulsating-border");
+      }, 1000);
+    }
+  };
+
   return (
-    <>
-      <main>
-        <Box
-          sx={{ height: '300px', color: 'var(--tg-theme-button-color)', background: 'var(--tg-theme-text-color)' }}>
-          test
-        </Box>
-      </main>
-    </>
+    <main>
+      <Paper
+        elevation={3} 
+        sx={{ 
+          borderRadius: '25px', 
+          backgroundColor: 'var(--tg-theme-bg-color)', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          mx: 3, 
+          my: 8, 
+          px: 2, 
+          py: 2 
+        }}
+      >
+        <CardNumberInput handleOpenSnackbar={handleOpenSnackbar}/>
+      </Paper>
+    </main>
   )
 }
-
-{/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
-/* 
-     <Script src="https://telegram.org/js/telegram-web-app.js"
-     strategy="beforeInteractive"
-   />
-
-*/

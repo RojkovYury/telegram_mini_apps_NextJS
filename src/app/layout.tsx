@@ -6,7 +6,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Bot WebApp',
+  title: 'Telegram bot WebApp',
   description: 'Bank Card submit Form',
 }
 

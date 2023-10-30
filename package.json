@@ -15,8 +15,7 @@
     "@mui/material": "^5.14.15",
     "next": "14.0.0",
     "react": "^18",
-    "react-dom": "^18",
-    "telegram-webapps-types": "^1.0.5"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",

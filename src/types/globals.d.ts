@@ -1,5 +1,3 @@
-import type { TelegramWebApps } from 'telegram-webapps-types';
-
 interface SDK {
   WebApp: WebApp;
 }
