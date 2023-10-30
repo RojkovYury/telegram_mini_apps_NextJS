@@ -1,7 +1,6 @@
 "use client"
 
 import Script from 'next/script';
-import Test from './components/test';
 import { useEffect } from 'react';
 
 export default function Home() {
@@ -10,25 +9,19 @@ export default function Home() {
     const tg = window.Telegram.WebApp;
     tg.MainButton.isVisible = true;
     tg.MainButton.text = 'Отправить данные';
+    tg.headerColor = 'secondary_bg_color';
+    tg.ready();
   });
 
   return (
     <>
-      {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
-      <Script
-        src="https://telegram.org/js/telegram-web-app.js"
-        strategy="beforeInteractive"
-      />
+      <Script src="https://telegram.org/js/telegram-web-app.js" />
       <main>
-        <Test/>
-        <div style={{ color: 'var(--tg-theme-button-color)', background: 'var(--tg-theme-text-color)' }}>
+        <div
+          style={{ height: '300px', color: 'var(--tg-theme-button-color)', background: 'var(--tg-theme-text-color)' }}>
           test
         </div>
       </main>
     </>
   )
 }
-/* 
-
-
-*/
