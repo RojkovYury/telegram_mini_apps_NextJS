@@ -1,14 +1,17 @@
+"use client"
+
 import Script from 'next/script';
 import Test from './components/test';
-
-if (typeof window !== 'undefined') {
-  const tg = window.Telegram.WebApp;
-  tg.MainButton.isVisible = true;
-  tg.MainButton.text = 'Отправить данные';
-  // tg.headerColor = 'secondary_bg_color';
-}
+import { useEffect } from 'react';
 
 export default function Home() {
+
+  useEffect(() => {
+    const tg = window.Telegram.WebApp;
+    tg.MainButton.isVisible = true;
+    tg.MainButton.text = 'Отправить данные';
+  });
+
   return (
     <>
       {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
@@ -25,3 +28,7 @@ export default function Home() {
     </>
   )
 }
+/* 
+
+
+*/
