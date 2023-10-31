@@ -77,7 +77,6 @@ export default function Home() {
         open={openSnackbar}
         onClose={handleCloseSnackbar}
         message={messageSnackbar}
-        duration={1500} //??
       />
       <Paper
         elevation={3} 
