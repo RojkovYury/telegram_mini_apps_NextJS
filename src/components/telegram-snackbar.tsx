@@ -8,20 +8,19 @@ interface TelegramSnackbarProps {
   message: string;
 }
 
+const Alert = forwardRef((
+  props: AlertProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) => (
+  <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />
+));
+
 export default function TelegramSnackbar(props: TelegramSnackbarProps) {
   const { open, onClose, message } = props;
-
-  const Alert = forwardRef(function Alert(
-    props: AlertProps,
-    ref: React.ForwardedRef<HTMLDivElement>
-  ) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-  });
 
   return (
     <Snackbar
       open={open}
-      // autoHideDuration={1500}
       onClose={onClose}
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     >

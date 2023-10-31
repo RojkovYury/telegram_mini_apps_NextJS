@@ -16,7 +16,6 @@ input::placeholder {
 @keyframes pulsate {
   0% {
     border: 2px solid var(--tg-theme-button-color);
-    ;
   }
 
   10% {
@@ -25,7 +24,6 @@ input::placeholder {
 
   100% {
     border: 2px solid var(--tg-theme-button-color);
-    ;
   }
 }
 

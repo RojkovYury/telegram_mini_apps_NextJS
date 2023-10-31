@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { useCallback, useEffect, useState } from 'react';
 import { Box, Paper } from '@mui/material';
@@ -10,7 +10,6 @@ import CvvInput from './components/cvv-input';
 import lunaCheck from './components/luna-check';
 
 export default function Home() {
-
   useEffect(() => {
     const tg = window.Telegram.WebApp;
     tg.MainButton.isVisible = true;
@@ -33,64 +32,68 @@ export default function Home() {
     setMessageSnackbar(message);
     setOpenSnackbar(true);
     const div = document.getElementById(divId);
-    div?.classList.add("pulsate-border")
+    div?.classList.add('pulsate-border');
     if (!loop) {
-      setTimeout(function() {
-        div?.classList.remove("pulsate-border");
+      setTimeout(() => {
+        div?.classList.remove('pulsate-border');
         setOpenSnackbar(false);
       }, 1000);
     }
   };
 
   // MAIN BUTTON CHECK
-  useEffect(() => { 
-    if (cardNumber.length === 19 && lunaCheck(cardNumber.replace(/\s/g, "")) && nameOnCard && expiryDate.length === 5 && cvv.length === 3) { 
-      window.Telegram.WebApp.MainButton.show()
+  useEffect(() => {
+    if (
+      cardNumber.length === 19
+      && lunaCheck(cardNumber.replace(/\s/g, ''))
+      && nameOnCard && expiryDate.length === 5
+      && cvv.length === 3
+    ) {
+      window.Telegram.WebApp.MainButton.show();
+    } else {
+      window.Telegram.WebApp.MainButton.hide();
     }
-    else { 
-      window.Telegram.WebApp.MainButton.hide()
-    }
-  }, [cardNumber, nameOnCard, expiryDate, cvv ])
+  }, [cardNumber, nameOnCard, expiryDate, cvv]);
 
   // SEND DATA to bot
-  //// callback
-  const onSendData = useCallback(()=>{
-    const cardNumberNoSpaces = cardNumber.replace(/\s/g, "")
-    const data = { cardNumber: cardNumberNoSpaces, nameOnCard, expiryDate, cvv }
-    window.Telegram.WebApp.sendData(JSON.stringify(data))
-  }, [cardNumber, nameOnCard, expiryDate, cvv])
-  //// send
+  /// callback
+  const onSendData = useCallback(() => {
+    const cardNumberNoSpaces = cardNumber.replace(/\s/g, '');
+    const data = { cardNumber: cardNumberNoSpaces, nameOnCard, expiryDate, cvv };
+    window.Telegram.WebApp.sendData(JSON.stringify(data));
+  }, [cardNumber, nameOnCard, expiryDate, cvv]);
+  /// send
   useEffect(() => {
     window.Telegram.WebApp.onEvent('mainButtonClicked', onSendData);
-    return () => {window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData)}
-  }, [onSendData])
+    return () => { window.Telegram.WebApp.offEvent('mainButtonClicked', onSendData); };
+  }, [onSendData]);
 
   // close modal window CHECK
-  useEffect(() => { 
-    if (cardNumber || nameOnCard || expiryDate || cvv) { window.Telegram.WebApp.enableClosingConfirmation() }
-    else { window.Telegram.WebApp.disableClosingConfirmation() }
-  }, [cardNumber, nameOnCard, expiryDate, cvv ])
+  useEffect(() => {
+    if (cardNumber || nameOnCard || expiryDate || cvv) {
+      window.Telegram.WebApp.enableClosingConfirmation();
+    } else { window.Telegram.WebApp.disableClosingConfirmation(); }
+  }, [cardNumber, nameOnCard, expiryDate, cvv]);
 
   return (
     <main>
-      <TelegramSnackbar 
+      <TelegramSnackbar
         open={openSnackbar}
         onClose={handleCloseSnackbar}
         message={messageSnackbar}
       />
       <Paper
-        elevation={3} 
-        sx={{ 
-          borderRadius: '25px', 
-          backgroundColor: 'var(--tg-theme-bg-color)', 
-          display: 'flex', 
-          flexDirection: 'column', 
-          mx: 3, 
-          my: 8, 
-          px: 2, 
-          py: 2 
+        elevation={3}
+        sx={{
+          borderRadius: '25px',
+          backgroundColor: 'var(--tg-theme-bg-color)',
+          display: 'flex',
+          flexDirection: 'column',
+          mx: 3,
+          my: 8,
+          p: 2,
         }}
-      >  
+      >
         <CardNumberInput
           setOpenSnackbar={setOpenSnackbar}
           cardNumber={cardNumber}
@@ -117,5 +120,5 @@ export default function Home() {
         </Box>
       </Paper>
     </main>
-  )
+  );
 }

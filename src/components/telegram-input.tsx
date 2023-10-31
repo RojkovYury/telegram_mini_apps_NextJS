@@ -1,51 +1,52 @@
+import { Box } from '@mui/material';
 import { SxProps } from '@mui/system';
 
 interface TelegramInputProps {
   title: string;
   id: string;
   colorId: string;
-  icon: any;
+  icon: JSX.Element;
   placeholder: string;
   value: string;
-  onChange: (e: any) => void;
+  onChange: (e: { target: { value: string; }; }) => void;
   onBlur?: () => void;
-  sx?: any;
+  sx?: SxProps;
 }
 
-export default function TelegramInput(props: TelegramInputProps) { 
-  return(
-    <div 
-      style={{ 
-        width: '100%', 
+export default function TelegramInput(props: TelegramInputProps) {
+  return (
+    <Box
+      sx={{
+        width: '100%',
         paddingBottom: '16px',
-        ...(props.sx || {})
+        ...(props.sx),
       }}
     >
-      <div 
-        style={{ 
-          paddingLeft: '20px', 
-          marginBottom: '4px', 
-          fontSize: '16px', 
-          color: 'var(--tg-theme-text-color)' 
+      <div
+        style={{
+          paddingLeft: '20px',
+          marginBottom: '4px',
+          fontSize: '16px',
+          color: 'var(--tg-theme-text-color)',
         }}
       >
         {props.title}
-      </div> 
+      </div>
       <div
         id={props.colorId}
-        style={{ 
+        style={{
           display: 'flex',
           border: '2px solid var(--tg-theme-button-color)',
-          borderRadius: '25px', 
+          borderRadius: '25px',
         }}
       >
         <div
-          style={{ 
-            width: '24px', 
-            height: '24px', 
-            marginTop: '10px', 
-            marginBottom: '10px', 
-            marginLeft: '20px', 
+          style={{
+            width: '24px',
+            height: '24px',
+            marginTop: '10px',
+            marginBottom: '10px',
+            marginLeft: '20px',
             marginRight: '10px',
           }}
         >
@@ -72,6 +73,6 @@ export default function TelegramInput(props: TelegramInputProps) {
           }}
         />
       </div>
-    </div>
-  )
+    </Box>
+  );
 }
