@@ -1,6 +1,5 @@
 "use client"
 
-import Script from 'next/script';
 import { useCallback, useEffect, useState } from 'react';
 import { Box, Paper } from '@mui/material';
 import TelegramSnackbar from '@/components/telegram-snackbar';
@@ -74,11 +73,6 @@ export default function Home() {
 
   return (
     <main>
-      {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
-      <Script 
-        src="https://telegram.org/js/telegram-web-app.js"
-        strategy="beforeInteractive"
-      />
       <TelegramSnackbar 
         open={openSnackbar}
         onClose={handleCloseSnackbar}
