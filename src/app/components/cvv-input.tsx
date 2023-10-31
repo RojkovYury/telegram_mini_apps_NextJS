@@ -1,20 +1,23 @@
-"use client"
-
-import { useState } from 'react';
 import LockIcon from '@mui/icons-material/Lock';
 import TelegramInput from '@/components/telegram-input';
 
 interface CvvInputProps {
   cvv: string;
   setCvv: any;
+  handleOpenSnackbar: any;
 }
 
-export default function CvvInput({ cvv, setCvv }: CvvInputProps) {
+export default function CvvInput({ cvv, setCvv, handleOpenSnackbar }: CvvInputProps) {
 
   const handleCvvChange = (e: any) => {
     const value = e.target.value;
     if (value === "" || /^[0-9\b]+$/.test(value) && value.length <= 3) {
       setCvv(value);
+      const div = document.getElementById('cvv-div-border');
+      div?.classList.remove("pulsate-border");
+    }
+    else if (value.length !== 0 && value.length < 4 && !(/^[0-9\b]+$/.test(value))) {
+      handleOpenSnackbar('Допустимы только цифры', 'cvv-div-border', false);
     }
   };
 

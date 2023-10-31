@@ -6,10 +6,11 @@ interface TelegramSnackbarProps {
   open: boolean;
   onClose: () => void;
   message: string;
+  duration: number;
 }
 
 export default function TelegramSnackbar(props: TelegramSnackbarProps) {
-  const { open, onClose, message } = props;
+  const { open, onClose, message, duration } = props;
 
   const Alert = forwardRef(function Alert(
     props: AlertProps,
@@ -21,7 +22,7 @@ export default function TelegramSnackbar(props: TelegramSnackbarProps) {
   return (
     <Snackbar
       open={open}
-      autoHideDuration={1500}
+      // autoHideDuration={1500}
       onClose={onClose}
       anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
     >

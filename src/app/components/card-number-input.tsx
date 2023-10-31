@@ -9,24 +9,28 @@ interface CardNumberInputProps {
     cardNumber: string;
     setCardNumber: any;
     lunaCheck: any;
+    setOpenSnackbar: any;
   }
 
-export default function CardNumberInput({ lunaCheck, handleOpenSnackbar, cardNumber, setCardNumber }: CardNumberInputProps) {
-
+export default function CardNumberInput({ lunaCheck, handleOpenSnackbar, setOpenSnackbar, cardNumber, setCardNumber }: CardNumberInputProps) {
   const handleCardNumberChange = (e: any) => {
     const value = e.target.value.replace(/\s/g, "");
     if ((value === "" || /^[0-9\b]+$/.test(value)) && value.length <= 16) {
+      setOpenSnackbar(false);
       setCardNumber(value.replace(/(.{4})(?!$)/g, "$1 "));
+    }
+    else if (value.length !== 0 && value.length < 17 && !(/^[0-9\b]+$/.test(value))) {
+      handleOpenSnackbar('Допустимы только цифры', 'card-number-div-border', false)
     }
   };
 
   useEffect(() => {
     if (cardNumber.length === 19 && !lunaCheck(cardNumber.replace(/\s/g, ""))) {
-      handleOpenSnackbar('Введен неверный номер', 'card-number-div-border', false)
+      handleOpenSnackbar('Введен неверный номер', 'card-number-div-border', true)
     }
     else {
       const div = document.getElementById('card-number-div-border');
-      div?.classList.remove("pulsating-border");
+      div?.classList.remove("pulsate-border");
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardNumber])

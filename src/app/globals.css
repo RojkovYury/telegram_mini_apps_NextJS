@@ -16,17 +16,19 @@ input::placeholder {
 @keyframes pulsate {
   0% {
     border: 2px solid var(--tg-theme-button-color);
+    ;
   }
 
-  20% {
+  10% {
     border: 2px solid #D32F2F;
   }
 
   100% {
     border: 2px solid var(--tg-theme-button-color);
+    ;
   }
 }
 
-.pulsating-border {
+.pulsate-border {
   animation: pulsate 1s infinite;
 }

@@ -4,9 +4,10 @@ import TelegramInput from '@/components/telegram-input';
 interface ExpirationDateInputProps {
   expiryDate: string;
   setExpiryDate: any;
+  handleOpenSnackbar: any;
 }
 
-export default function ExpirationDateInput({ expiryDate, setExpiryDate }: ExpirationDateInputProps) {
+export default function ExpirationDateInput({ expiryDate, setExpiryDate, handleOpenSnackbar }: ExpirationDateInputProps) {
   const handleExpiryDateChange = (e: any) => {
     let value = e.target.value.replace('/', '');
     if (value.length >= 2 && Number(value.substring(0, 2)) > 12) {
@@ -22,7 +23,12 @@ export default function ExpirationDateInput({ expiryDate, setExpiryDate }: Expir
       (value.length > 2) 
         ? setExpiryDate(value.slice(0, 2) + "/" + value.slice(2))
         : setExpiryDate(value)
+      const div = document.getElementById('expiration-date-div-border');
+      div?.classList.remove("pulsate-border");
     }
+    if (value.length !== 0 && value.length < 5 && !(/^[0-9\b]+$/.test(value))) {
+      handleOpenSnackbar('Допустимы только цифры', 'expiration-date-div-border', false);
+    } 
   };
 
   return(

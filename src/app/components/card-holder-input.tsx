@@ -15,7 +15,7 @@ export default function CarHolderInput({ handleOpenSnackbar, nameOnCard, setName
       setNameOnCard(value.toUpperCase());
     }
     else {
-      handleOpenSnackbar('Только латинские буквы', 'card-holder-div-border', true)
+      handleOpenSnackbar('Только латинские буквы', 'card-holder-div-border', false)
     }
   };
 

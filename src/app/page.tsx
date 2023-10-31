@@ -29,33 +29,26 @@ export default function Home() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [messageSnackbar, setMessageSnackbar] = useState('');
   const handleCloseSnackbar = () => { setOpenSnackbar(false); };
-  const handleOpenSnackbar = (message: string, divId: string, disableInfAnim: boolean) => {
+  const handleOpenSnackbar = (message: string, divId: string, loop: boolean) => {
     setMessageSnackbar(message);
     setOpenSnackbar(true);
     const div = document.getElementById(divId);
-    div?.classList.add("pulsating-border")
-    if (disableInfAnim) {
+    div?.classList.add("pulsate-border")
+    if (!loop) {
       setTimeout(function() {
-        div?.classList.remove("pulsating-border");
+        div?.classList.remove("pulsate-border");
+        setOpenSnackbar(false);
       }, 1000);
     }
   };
 
-// MAIN BUTTON CHECK
+  // MAIN BUTTON CHECK
   useEffect(() => { 
-
-    console.log(window.Telegram.WebApp.MainButton);
-    console.log(window.Telegram.WebApp.MainButton.isVisible);
-    console.log(window.Telegram.WebApp.MainButton.isProgressVisible);
-    console.log(window.Telegram.WebApp.MainButton.isActive);
-
     if (cardNumber.length === 19 && lunaCheck(cardNumber.replace(/\s/g, "")) && nameOnCard && expiryDate.length === 5 && cvv.length === 3) { 
       window.Telegram.WebApp.MainButton.show()
-      console.log('ACTIVATE tg.MainButton.show()'); 
     }
     else { 
       window.Telegram.WebApp.MainButton.hide()
-      // console.log('DEactive tg.MainButton.show()');
     }
   }, [cardNumber, nameOnCard, expiryDate, cvv ])
 
@@ -84,6 +77,7 @@ export default function Home() {
         open={openSnackbar}
         onClose={handleCloseSnackbar}
         message={messageSnackbar}
+        duration={1500} //??
       />
       <Paper
         elevation={3} 
@@ -99,24 +93,27 @@ export default function Home() {
         }}
       >  
         <CardNumberInput
-          handleOpenSnackbar={handleOpenSnackbar}
+          setOpenSnackbar={setOpenSnackbar}
           cardNumber={cardNumber}
           setCardNumber={setCardNumber}
           lunaCheck={lunaCheck}
+          handleOpenSnackbar={handleOpenSnackbar}
         />
         <CarHolderInput
-          handleOpenSnackbar={handleOpenSnackbar}
           nameOnCard={nameOnCard}
           setNameOnCard={setNameOnCard}
+          handleOpenSnackbar={handleOpenSnackbar}
         />
         <Box sx={{ display: 'flex' }}>
           <ExpirationDateInput
             expiryDate={expiryDate}
             setExpiryDate={setExpiryDate}
+            handleOpenSnackbar={handleOpenSnackbar}
           />
           <CvvInput
             cvv={cvv}
             setCvv={setCvv}
+            handleOpenSnackbar={handleOpenSnackbar}
           />
         </Box>
       </Paper>
