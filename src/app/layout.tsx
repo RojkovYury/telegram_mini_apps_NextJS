@@ -19,12 +19,16 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
       {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
-        <Script 
-          src="https://telegram.org/js/telegram-web-app.js"
-          strategy="beforeInteractive"
-        />
         {children}
       </body>
     </html>
   )
 }
+
+
+/*
+        <Script 
+          src="https://telegram.org/js/telegram-web-app.js"
+          strategy="beforeInteractive"
+        />
+*/
