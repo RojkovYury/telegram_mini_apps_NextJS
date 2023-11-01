@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
-import { Box, Paper } from '@mui/material';
+import { Box, Paper, Button } from '@mui/material';
 import TelegramSnackbar from '@/components/telegram-snackbar';
 import CardNumberInput from './components/card-number-input';
 import CarHolderInput from './components/card-holder-input';
@@ -75,8 +75,20 @@ export default function Home() {
     } else { window.Telegram.WebApp.disableClosingConfirmation(); }
   }, [cardNumber, nameOnCard, expiryDate, cvv]);
 
+  const handleClick = () => {
+    window.location.href = ('https://dev-4.clubber.me/shop/testcases');
+  };
+
   return (
     <main>
+
+      <Paper sx={{ margin: '10px', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <a style={{ marginLeft: '10px' }} href="https://dev-4.clubber.me/shop/testcases">https://dev-4.clubber.me/shop/testcases</a>
+        <Button variant="outlined" sx={{ maxHeight: '30px', marginLeft: '10px' }} onClick={handleClick}>
+          https://dev-4.clubber.me/shop/testcases
+        </Button>
+      </Paper>
+
       <TelegramSnackbar
         open={openSnackbar}
         onClose={handleCloseSnackbar}
