@@ -82,9 +82,9 @@ export default function Home() {
   return (
     <main>
 
-      <Paper sx={{ margin: '10px', height: '40px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <a style={{ marginLeft: '10px' }} href="https://dev-4.clubber.me/shop/testcases">https://dev-4.clubber.me/shop/testcases</a>
-        <Button variant="outlined" sx={{ maxHeight: '30px', marginLeft: '10px' }} onClick={handleClick}>
+      <Paper sx={{ margin: '10px', height: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <a style={{ marginTop: '10px' }} href="https://dev-4.clubber.me/shop/testcases">https://dev-4.clubber.me/shop/testcases</a>
+        <Button variant="contained" sx={{ maxHeight: '30px', marginTop: '10px' }} onClick={handleClick}>
           https://dev-4.clubber.me/shop/testcases
         </Button>
       </Paper>
