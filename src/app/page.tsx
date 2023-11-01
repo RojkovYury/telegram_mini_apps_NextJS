@@ -76,16 +76,16 @@ export default function Home() {
   }, [cardNumber, nameOnCard, expiryDate, cvv]);
 
   const handleClick = () => {
-    window.location.href = ('https://dev-4.clubber.me/shop/testcases');
+    window.location.href = ('https://mig.sbctech.ru');
   };
 
   return (
     <main>
 
-      <Paper sx={{ margin: '10px', height: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <a style={{ marginTop: '10px' }} href="https://dev-4.clubber.me/shop/testcases">https://dev-4.clubber.me/shop/testcases</a>
+      <Paper sx={{ margin: '10px', height: '140px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+        <a style={{ marginTop: '10px' }} href="https://mig.sbctech.ru">https://mig.sbctech.ru/</a>
         <Button variant="contained" sx={{ maxHeight: '30px', marginTop: '10px' }} onClick={handleClick}>
-          https://dev-4.clubber.me/shop/testcases
+          https://mig.sbctech.ru/
         </Button>
       </Paper>
 
