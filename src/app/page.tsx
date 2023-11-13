@@ -76,6 +76,7 @@ export default function Home() {
   }, [cardNumber, nameOnCard, expiryDate, cvv]);
 
   const handleClick = () => {
+    window.Telegram.WebApp.backgroundColor = 'white';
     window.location.href = ('https://mig.sbctech.ru');
   };
 
@@ -85,7 +86,7 @@ export default function Home() {
       <Paper sx={{ margin: '10px', height: '140px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <a style={{ marginTop: '10px' }} href="https://mig.sbctech.ru">https://mig.sbctech.ru/</a>
         <Button variant="contained" sx={{ maxHeight: '30px', marginTop: '10px' }} onClick={handleClick}>
-          https://mig.sbctech.ru/
+          https://gate.sbctech.ru/paynet
         </Button>
       </Paper>
 
