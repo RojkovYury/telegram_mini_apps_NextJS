@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} style={{ backgroundColor: 'red' }}>
         {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
         <Script
           src="https://telegram.org/js/telegram-web-app.js"

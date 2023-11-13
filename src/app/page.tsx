@@ -89,6 +89,10 @@ export default function Home() {
         <Button variant="contained" sx={{ maxHeight: '30px', marginTop: '10px' }} onClick={handleClick}>
           https://gate.sbctech.ru/paynet
         </Button>
+        <div>{window.Telegram.WebApp.themeParams.bg_color}</div>
+        <div>{window.Telegram.WebApp.backgroundColor}</div>
+        <div>{window.Telegram.WebApp.colorScheme}</div>
+        <div>{window.Telegram.WebApp.colorScheme}</div>
       </Paper>
 
       <TelegramSnackbar
