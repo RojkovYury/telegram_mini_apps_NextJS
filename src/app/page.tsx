@@ -16,7 +16,7 @@ export default function Home() {
     tg.MainButton.hide();
     tg.MainButton.text = 'Отправить данные';
     tg.headerColor = 'secondary_bg_color';
-    tg.colorScheme = 'light';
+    // tg.colorScheme = 'light';
     tg.ready();
   });
 
