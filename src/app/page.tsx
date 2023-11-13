@@ -16,6 +16,7 @@ export default function Home() {
     tg.MainButton.hide();
     tg.MainButton.text = 'Отправить данные';
     tg.headerColor = 'secondary_bg_color';
+    tg.backgroundColor = '#ff0000';
     tg.ready();
   });
 
@@ -76,7 +77,7 @@ export default function Home() {
   }, [cardNumber, nameOnCard, expiryDate, cvv]);
 
   const handleClick = () => {
-    window.Telegram.WebApp.backgroundColor = 'white';
+    // window.Telegram.WebApp.backgroundColor = 'white';
     window.location.href = ('https://mig.sbctech.ru');
   };
 
