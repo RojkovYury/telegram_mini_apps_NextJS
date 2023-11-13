@@ -87,7 +87,7 @@ export default function Home() {
       <Paper sx={{ margin: '10px', height: '140px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
         <a style={{ marginTop: '10px' }} href="https://mig.sbctech.ru">https://mig.sbctech.ru/</a>
         <Button variant="contained" sx={{ maxHeight: '30px', marginTop: '10px' }} onClick={handleClick}>
-          https://gate.sbctech.ru/paynet
+          https://mig.sbctech.ru
         </Button>
       </Paper>
 
