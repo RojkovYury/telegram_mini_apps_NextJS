@@ -10,16 +10,13 @@ import CvvInput from './components/cvv-input';
 import lunaCheck from './components/luna-check';
 
 export default function Home() {
-  let x = 'none';
   useEffect(() => {
     const tg = window.Telegram.WebApp;
     tg.MainButton.isVisible = true;
     tg.MainButton.hide();
     tg.MainButton.text = 'Отправить данные';
     tg.headerColor = 'secondary_bg_color';
-    tg.themeParams.bg_color = '#ff0000';
-    // tg.colorScheme = 'light';
-    x = tg.colorScheme;
+    tg.themeParams.bg_color = 'rgb(218, 11, 11)';
     tg.ready();
   });
 
@@ -92,7 +89,6 @@ export default function Home() {
         <Button variant="contained" sx={{ maxHeight: '30px', marginTop: '10px' }} onClick={handleClick}>
           https://gate.sbctech.ru/paynet
         </Button>
-        <div>{x}</div>
       </Paper>
 
       <TelegramSnackbar
