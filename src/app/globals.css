@@ -5,12 +5,9 @@
 }
 
 body {
+  background: var(--tg-theme-secondary-bg-color);
   color: var(--tg-theme-text-color);
 }
-
-/* 
-  background: var(--tg-theme-secondary-bg-color); 
-*/
 
 input::placeholder {
   color: var(--tg-theme-hint-color);
